@@ -6,6 +6,8 @@ public class ChickenSpawner : MonoBehaviour
     public GameObject chickenPrefab;
     public float respawnTime = 5f;
 
+    private bool isRespawning = false;
+
     void Start()
     {
         SpawnChicken();
@@ -14,17 +16,25 @@ public class ChickenSpawner : MonoBehaviour
     void SpawnChicken()
     {
         GameObject newChicken = Instantiate(chickenPrefab, transform.position, Quaternion.identity);
-        newChicken.GetComponent<Chicken>().spawner = this;
+
+        Chicken chickenScript = newChicken.GetComponent<Chicken>();
+        chickenScript.spawner = this;
     }
 
     public void StartRespawn()
     {
-        StartCoroutine(Respawn());
+        if (!isRespawning)
+            StartCoroutine(Respawn());
     }
 
     IEnumerator Respawn()
     {
+        isRespawning = true;
+
         yield return new WaitForSeconds(respawnTime);
+
         SpawnChicken();
+
+        isRespawning = false;
     }
 }

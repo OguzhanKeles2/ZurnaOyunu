@@ -6,12 +6,18 @@ public class Chicken : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
-        {
-            other.GetComponent<PlayerInventory>().AddChicken();
+        if (!other.CompareTag("Player")) return;
 
-            spawner.StartRespawn();  // spawn sürecini başlat
-            Destroy(gameObject);     // tavuğu yok et
+        PlayerInventory inventory = other.GetComponent<PlayerInventory>();
+        if (inventory == null) return;
+
+        inventory.AddChicken();   // parametre kaldırıldı
+
+        if (spawner != null)
+        {
+            spawner.StartRespawn();
         }
+
+        Destroy(gameObject);   // prefablı sistem kullanıyorsan bu kalmalı
     }
 }
