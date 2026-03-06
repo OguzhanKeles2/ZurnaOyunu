@@ -1057,6 +1057,8 @@ MonoBehaviour:
   handPoint: {fileID: 0}
   pluckSpawnPoint: {fileID: 0}
   stackHeight: 0.4
+  stackedChickens: []
+  sideStackCount: 0
 --- !u!114 &2126273144
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1072,6 +1074,8 @@ MonoBehaviour:
   joystick: {fileID: 0}
   speed: 8
   rotationSpeed: 10
+  rb: {fileID: 0}
+  anim: {fileID: 0}
 --- !u!114 &2126273145
 MonoBehaviour:
   m_ObjectHideFlags: 0
